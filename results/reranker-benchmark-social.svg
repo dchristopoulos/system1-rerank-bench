@@ -37,7 +37,7 @@
 <path d="M56,793.6 H506.1 Q512.1,793.6 512.1,799.6 V825.6 Q512.1,831.6 506.1,831.6 H56 Z" fill="#2a78d6"/>
 <line x1="486.3" x2="486.3" y1="787.6" y2="837.6" stroke="#8a8983" stroke-width="2" stroke-dasharray="5 5"/>
 <text x="524.1" y="823.6" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="9" paint-order="stroke">0.57</text>
-<text x="872" y="822.6" font-family="Helvetica, Arial, sans-serif" font-size="25" font-weight="400" fill="#52514e" text-anchor="end">not timed</text>
+<text x="872" y="822.6" font-family="Helvetica, Arial, sans-serif" font-size="25" font-weight="400" fill="#52514e" text-anchor="end">104 s*</text>
 <text x="1024" y="822.6" font-family="Helvetica, Arial, sans-serif" font-size="25" font-weight="400" fill="#52514e" text-anchor="end">open</text>
 <text x="56" y="878.4" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">BGE-reranker-v2-m3<tspan font-weight="400" fill="#52514e" font-size="22">  open reranker, 568M</tspan></text>
 <path d="M56,890.4 H489.9 Q495.9,890.4 495.9,896.4 V922.4 Q495.9,928.4 489.9,928.4 H56 Z" fill="#9c9b95"/>

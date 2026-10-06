@@ -62,7 +62,7 @@
 <text x="48" y="326" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">Qwen3-Reranker-0.6B<tspan font-weight="400" fill="#52514e" font-size="13">  open reranker</tspan></text>
 <text x="978" y="326" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">5.7 s on a laptop GPU</text>
 <text x="48" y="372" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">Clef-flash 9B<tspan font-weight="400" fill="#52514e" font-size="13">  open decision model</tspan></text>
-<text x="978" y="372" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">quality only</text>
+<text x="978" y="372" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">104 s on a laptop GPU</text>
 <text x="48" y="418" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">BGE-reranker-v2-m3<tspan font-weight="400" fill="#52514e" font-size="13">  open reranker, 568M</tspan></text>
 <text x="978" y="418" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">3.1 s on a laptop GPU</text>
 <text x="48" y="464" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">Ettin reranker 150M<tspan font-weight="400" fill="#52514e" font-size="13">  open reranker</tspan></text>

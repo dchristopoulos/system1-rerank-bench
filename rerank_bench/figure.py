@@ -113,8 +113,6 @@ def main():
         )
         if arm == "hybrid":
             note = "baseline"
-        elif arm == "clef":
-            note = "quality only"
         elif arm in cost:
             time = duration(seconds[arm])
             if arm == "jev":
@@ -191,8 +189,6 @@ def social():
         hosted = arm in cost
         if arm == "hybrid":
             cells = [(price_x, "baseline")]
-        elif arm == "clef":
-            cells = [(time_x, "not timed"), (price_x, "open")]
         else:
             time = duration(seconds[arm]) + ("" if hosted else "*")
             if arm == "jev":

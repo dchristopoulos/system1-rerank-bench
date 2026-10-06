@@ -23,7 +23,7 @@ nDCG@10 on 100 test queries per dataset. Mean is the unweighted mean of the two 
 | GPT-5.6 Luna | LLM, ranks the whole list | 0.815 | 0.423 | 0.619 | 9.1 s | $3.77 at list price |
 | Qwen3-Reranker-4B | open reranker | 0.790 | 0.415 | 0.603 | 31 s * | open weights |
 | Qwen3-Reranker-0.6B | open reranker | 0.761 | 0.407 | 0.584 | 5.7 s * | open weights |
-| Clef-flash 9B | open decision model | 0.753 | 0.387 | 0.570 | not reported | open weights |
+| Clef-flash 9B | open decision model | 0.753 | 0.387 | 0.570 | 104 s * | open weights |
 | BGE-reranker-v2-m3 | open reranker, 568M | 0.720 | 0.380 | 0.550 | 3.1 s * | open weights |
 | Ettin reranker 150M | open reranker | 0.723 | 0.370 | 0.547 | 1.3 s * | open weights |
 | No reranker | hybrid search only | 0.702 | 0.373 | 0.538 |  |  |
@@ -84,7 +84,7 @@ Full revisions, prompts and query IDs are in the [result file](results/reranker-
 
 **Candidates.** SQLite FTS5 BM25 and exact cosine search over [BGE-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5) embeddings each return 50 documents. Reciprocal rank fusion (constant 60) merges them and the top 50 go to every reranker. Documents are the BEIR title and text joined; nothing is chunked.
 
-**Queries.** The retrieval baselines and the two 512-token rerankers ran on every test query. The other models ran on a comparison set of 100 test queries per dataset, drawn at random with a recorded seed before any of them ran. A separate tuning set of 50 queries per dataset, disjoint from the comparison set, was used only for the Laya wording sweep below.
+**Queries.** The retrieval baselines and the two 512-token rerankers ran on every test query. The other models ran on a comparison set of 100 test queries per dataset, drawn at random with a recorded seed before any of them ran. A separate tuning set of 50 queries per dataset, disjoint from the comparison set, was used only for the Laya wording sweep below. The size of 100 was set by the models that ran on a laptop: Clef-flash took about 100 s per query and Qwen3-Reranker-4B about 30 s. The hosted models could be run on the full test sets for a few dollars, which would narrow their intervals.
 
 **Decision-model question.** Decision models answer a typed question about a state and return probabilities. All three get the same question for each passage:
 
@@ -117,7 +117,7 @@ The first stage and the two 512-token rerankers on the full test sets:
 | MiniLM-L6 over the hybrid top 50 | 0.697 | 0.356 |
 | BGE-reranker-base over the hybrid top 50 | 0.721 | 0.325 |
 
-BM25 on SciFact and the dense numbers on both datasets agree with the figures commonly reported for BEIR. BM25 on NFCorpus is about 0.02 lower than usual because this index does not stem. Hybrid search is not measurably better than dense search alone on either dataset (+0.000 and +0.009).
+BM25 on SciFact and the dense numbers on both datasets agree with the figures commonly reported for BEIR. BM25 on NFCorpus is about 0.02 lower than usual because this index does not stem. Hybrid search is not measurably better than dense search alone on either dataset (+0.000 and +0.009). The 50 hybrid candidates contain 95% of the judged-relevant documents on SciFact and 26% on NFCorpus, where many queries have far more than 50. A perfect reranker of those candidates would score 0.947 and 0.578 on the full test sets (0.972 and 0.594 on the comparison queries).
 
 | Comparison | SciFact | NFCorpus |
 | --- | --- | --- |
@@ -150,9 +150,9 @@ The best wordings are a statistical tie: three levels minus four levels is +0.00
 
 ## Cost and time
 
-- **Jev.** 5.0M input tokens over the 200 comparison queries, $0.211 billed by OpenRouter, about 25,000 tokens per query. Most of that is the rubric repeated for each passage. In the scored run the three requests of a query were sent one after another and the median was 1.7 s. A registered timing check on 40 of the same queries sent the three requests at the same time and measured a median of 0.65 s. Against Luna's 9.1 s that is 5 to 14 times faster. The check's nDCG@10 differed from the scored run's by about 0.002, with small changes in individual scores, so Jev is close to but not exactly deterministic.
+- **Jev.** 5.0M input tokens over the 200 comparison queries, $0.211 billed by OpenRouter, about 25,000 tokens per query. Most of that is the rubric repeated for each passage. In the scored run the three requests of a query were sent one after another and the median was 1.7 s. The 95th percentile was 2.0 to 2.1 s. A registered timing check on 40 of the same queries sent the three requests at the same time and measured a median of 0.65 s, with a 95th percentile near 2.0 s, so parallel requests lower the typical time but not the tail. Against Luna's 9.1 s that is 5 to 14 times faster. The check's nDCG@10 differed from the scored run's by about 0.002, with small changes in individual scores, so Jev is close to but not exactly deterministic.
 - **GPT-5.6 Luna.** About 17,000 input tokens per query. The run used a ChatGPT plan route to the Responses API, so the price is the list API price applied to the measured tokens ($0.20 per million input, $1.20 per million output, read 2026-10-05) and the time is that route's, not the paid API's.
-- **Open models.** All ran on an Apple M4 Pro with 48 GB. Laya's faster path is CUDA-only. Clef-flash ran on reference kernels at roughly 105 s per query, which says nothing about its speed on CUDA, so no time is reported for it.
+- **Open models.** All ran on an Apple M4 Pro with 48 GB. Laya's faster path is CUDA-only. Clef-flash is a 9.4B model and its release is tested on CUDA; on this machine it fell back to reference kernels, so its time of about 100 s per query says little about its serving speed.
 - **Hosted prices for open rerankers** were not measured here. A [public benchmark](https://github.com/denser-org/rerank-bench-jev) reports Qwen3-Reranker-0.6B on a hosted endpoint at about a quarter of Jev's price per query.
 
 ## Failures and repairs
@@ -176,7 +176,7 @@ What this benchmark adds: an LLM listwise reranker and locally run open reranker
 
 ## Limits
 
-- 100 queries per dataset. Differences under about 0.03 on NFCorpus and 0.04 to 0.06 on SciFact are within noise, and the intervals are not adjusted for the number of comparisons.
+- 100 queries per dataset. Differences under roughly 0.03 to 0.06 (about 0.03 on NFCorpus, 0.04 to 0.06 on SciFact) are within noise, and the intervals are not adjusted for the number of comparisons.
 - Two datasets, both scientific or medical English text. Other domains may order the models differently.
 - Candidates are the top 50 of one hybrid retriever. A reranker cannot recover a document retrieval missed, and a weaker first stage leaves more for a reranker to fix.
 - The models were not run under one protocol: the LLM sees 50 passages at once, Jev and Clef-flash 17, the others one.
@@ -191,7 +191,7 @@ What this benchmark adds: an LLM listwise reranker and locally run open reranker
 
 ## Reproduce
 
-[`results/reranker-benchmark.json`](results/reranker-benchmark.json) holds the summaries, every registration with its query IDs and wording, the wording sweep and token usage. Registrations are published with local paths shortened. Raw per-request outputs are not in the repository.
+[`results/reranker-benchmark.json`](results/reranker-benchmark.json) holds the summaries, every registration with its query IDs and wording, the wording sweep and token usage. Registrations are published with local paths shortened. The final ranking of every model for every comparison query is in [`results/rankings/`](results/rankings), one JSON line per model and query, so the scores and intervals can be recomputed with `screen report`. Raw per-request outputs are not in the repository.
 
 Download SciFact and NFCorpus from the [BEIR distribution](https://github.com/beir-cellar/beir) and unpack them so that each folder has `corpus.jsonl`, `queries.jsonl` and `qrels/test.tsv`.
 
