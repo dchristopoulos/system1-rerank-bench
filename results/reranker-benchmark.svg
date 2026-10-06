@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 706" width="1200" height="706" role="img" aria-labelledby="t d">
+<title id="t">Reranking quality, time and price on two BEIR datasets</title>
+<desc id="d">nDCG at 10 for each reranker on 100 SciFact and 100 NFCorpus test queries, with median seconds per query and price per thousand queries.</desc>
+<rect width="1200" height="706" fill="#fcfcfb"/>
+<text x="48" y="58" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="700" fill="#0b0b0b">Reranking the same 50 hybrid-search results per query</text>
+<text x="48" y="88" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#52514e">nDCG@10 on 100 test queries per BEIR dataset; higher is better. Blue: decision models. Dashed line: no reranker.</text>
+<text x="348" y="144" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#0b0b0b">SciFact</text>
+<line x1="543.1" x2="543.1" y1="160" y2="618" stroke="#8a8983" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M348,170 H572.9 Q576.9,170 576.9,174 V190 Q576.9,194 572.9,194 H348 Z" fill="#2a78d6"/>
+<text x="584.9" y="188" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.824</text>
+<path d="M348,216 H570.4 Q574.4,216 574.4,220 V236 Q574.4,240 570.4,240 H348 Z" fill="#52514e"/>
+<text x="582.4" y="234" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.815</text>
+<path d="M348,262 H563.6 Q567.6,262 567.6,266 V282 Q567.6,286 563.6,286 H348 Z" fill="#9c9b95"/>
+<text x="575.6" y="280" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.790</text>
+<path d="M348,308 H555.4 Q559.4,308 559.4,312 V328 Q559.4,332 555.4,332 H348 Z" fill="#9c9b95"/>
+<text x="567.4" y="326" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.761</text>
+<path d="M348,354 H543.9 Q547.9,354 547.9,358 V374 Q547.9,378 543.9,378 H348 Z" fill="#9c9b95"/>
+<text x="555.9" y="372" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.720</text>
+<path d="M348,400 H544.8 Q548.8,400 548.8,404 V420 Q548.8,424 544.8,424 H348 Z" fill="#9c9b95"/>
+<text x="556.8" y="418" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.723</text>
+<path d="M348,446 H539.1 Q543.1,446 543.1,450 V466 Q543.1,470 539.1,470 H348 Z" fill="#d3d2cc"/>
+<text x="551.1" y="464" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.702</text>
+<path d="M348,492 H533.3 Q537.3,492 537.3,496 V512 Q537.3,516 533.3,516 H348 Z" fill="#9c9b95"/>
+<text x="545.3" y="510" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.682</text>
+<path d="M348,538 H534.5 Q538.5,538 538.5,542 V558 Q538.5,562 534.5,562 H348 Z" fill="#9c9b95"/>
+<text x="546.5" y="556" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.686</text>
+<path d="M348,584 H475.2 Q479.2,584 479.2,588 V604 Q479.2,608 475.2,608 H348 Z" fill="#2a78d6"/>
+<text x="487.2" y="602" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.472</text>
+<text x="648" y="144" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#0b0b0b">NFCorpus</text>
+<line x1="834.7" x2="834.7" y1="160" y2="618" stroke="#8a8983" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M648,170 H856.6 Q860.6,170 860.6,174 V190 Q860.6,194 856.6,194 H648 Z" fill="#2a78d6"/>
+<text x="868.6" y="188" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.425</text>
+<path d="M648,216 H855.6 Q859.6,216 859.6,220 V236 Q859.6,240 855.6,240 H648 Z" fill="#52514e"/>
+<text x="867.6" y="234" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.423</text>
+<path d="M648,262 H851.7 Q855.7,262 855.7,266 V282 Q855.7,286 851.7,286 H648 Z" fill="#9c9b95"/>
+<text x="863.7" y="280" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.415</text>
+<path d="M648,308 H847.3 Q851.3,308 851.3,312 V328 Q851.3,332 847.3,332 H648 Z" fill="#9c9b95"/>
+<text x="859.3" y="326" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.407</text>
+<path d="M648,354 H834.0 Q838.0,354 838.0,358 V374 Q838.0,378 834.0,378 H648 Z" fill="#9c9b95"/>
+<text x="846.0" y="372" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.380</text>
+<path d="M648,400 H829.2 Q833.2,400 833.2,404 V420 Q833.2,424 829.2,424 H648 Z" fill="#9c9b95"/>
+<text x="841.2" y="418" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.370</text>
+<path d="M648,446 H830.7 Q834.7,446 834.7,450 V466 Q834.7,470 830.7,470 H648 Z" fill="#d3d2cc"/>
+<text x="842.7" y="464" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.373</text>
+<path d="M648,492 H824.2 Q828.2,492 828.2,496 V512 Q828.2,516 824.2,516 H648 Z" fill="#9c9b95"/>
+<text x="836.2" y="510" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.360</text>
+<path d="M648,538 H815.0 Q819.0,538 819.0,542 V558 Q819.0,562 815.0,562 H648 Z" fill="#9c9b95"/>
+<text x="827.0" y="556" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.342</text>
+<path d="M648,584 H790.3 Q794.3,584 794.3,588 V604 Q794.3,608 790.3,608 H648 Z" fill="#2a78d6"/>
+<text x="802.3" y="602" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b" stroke="#fcfcfb" stroke-width="8" paint-order="stroke">0.293</text>
+<text x="978" y="144" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="700" fill="#0b0b0b">Per query</text>
+<text x="48" y="188" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">Jev 1.13<tspan font-weight="400" fill="#52514e" font-size="13">  hosted decision model</tspan></text>
+<text x="978" y="188" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">0.65 to 1.7 s · $1.05 per 1,000</text>
+<text x="48" y="234" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">GPT-5.6 Luna<tspan font-weight="400" fill="#52514e" font-size="13">  LLM, ranks the whole list</tspan></text>
+<text x="978" y="234" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">9.1 s · $3.77 per 1,000</text>
+<text x="48" y="280" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">Qwen3-Reranker-4B<tspan font-weight="400" fill="#52514e" font-size="13">  open reranker</tspan></text>
+<text x="978" y="280" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">31 s on a laptop GPU</text>
+<text x="48" y="326" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">Qwen3-Reranker-0.6B<tspan font-weight="400" fill="#52514e" font-size="13">  open reranker</tspan></text>
+<text x="978" y="326" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">5.7 s on a laptop GPU</text>
+<text x="48" y="372" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">BGE-reranker-v2-m3<tspan font-weight="400" fill="#52514e" font-size="13">  open reranker, 568M</tspan></text>
+<text x="978" y="372" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">3.1 s on a laptop GPU</text>
+<text x="48" y="418" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">Ettin reranker 150M<tspan font-weight="400" fill="#52514e" font-size="13">  open reranker</tspan></text>
+<text x="978" y="418" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">1.3 s on a laptop GPU</text>
+<text x="48" y="464" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">No reranker<tspan font-weight="400" fill="#52514e" font-size="13">  hybrid search only</tspan></text>
+<text x="978" y="464" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">baseline</text>
+<text x="48" y="510" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">MiniLM-L6<tspan font-weight="400" fill="#52514e" font-size="13">  open reranker, 22M</tspan></text>
+<text x="978" y="510" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">0.15 s on a laptop GPU</text>
+<text x="48" y="556" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">BGE-reranker-base<tspan font-weight="400" fill="#52514e" font-size="13">  open reranker, 278M</tspan></text>
+<text x="978" y="556" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">0.92 s on a laptop GPU</text>
+<text x="48" y="602" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">Laya 421M<tspan font-weight="400" fill="#52514e" font-size="13">  open decision model</tspan></text>
+<text x="978" y="602" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">3.9 s on a laptop GPU</text>
+<text x="48" y="648" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8a8983">Decision models use one four-level relevance rubric. Open models ran on an Apple M4 Pro, which is not their serving hardware. Hosted times include the network.</text>
+<text x="48" y="668" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8a8983">Jev: three requests in parallel to in sequence. Luna ran on a ChatGPT plan route; its price is list API price for the measured tokens. See the report for intervals.</text>
+</svg>
