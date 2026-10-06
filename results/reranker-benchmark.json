@@ -2258,6 +2258,11 @@
             "ndcg": 0.4153278243599214,
             "recall": 0.18037180211908554,
             "reciprocal_rank": 0.5950119047619048
+          },
+          "clef": {
+            "ndcg": 0.3874483902907333,
+            "recall": 0.17319887464832176,
+            "reciprocal_rank": 0.6110396825396825
           }
         },
         "median_seconds_per_query": {
@@ -2271,7 +2276,8 @@
           "ettin-150m": 1.3109452504977526,
           "bge-v2-m3": 3.175244083497091,
           "qwen3-0.6b": 5.842995979499392,
-          "qwen3-4b": 32.60090852099893
+          "qwen3-4b": 32.60090852099893,
+          "clef": 109.17491864600015
         },
         "failed_queries": {
           "bm25": 0,
@@ -2287,7 +2293,8 @@
           "ettin-150m": 0,
           "bge-v2-m3": 0,
           "qwen3-0.6b": 0,
-          "qwen3-4b": 0
+          "qwen3-4b": 0,
+          "clef": 0
         },
         "paired_ndcg_at_10": {
           "minilm-minus-hybrid": {
@@ -2457,6 +2464,41 @@
               -0.0077859450303845255,
               0.0258007147849102
             ]
+          },
+          "clef-minus-hybrid": {
+            "difference": 0.01406759830151391,
+            "interval_95": [
+              -0.017221403639874726,
+              0.046459063004932216
+            ]
+          },
+          "jev-minus-clef": {
+            "difference": 0.03774572983473318,
+            "interval_95": [
+              0.01720957219319557,
+              0.0584655002689768
+            ]
+          },
+          "luna-minus-clef": {
+            "difference": 0.03574997912862056,
+            "interval_95": [
+              0.010393118420452456,
+              0.05975521733143803
+            ]
+          },
+          "clef-minus-laya-rubric": {
+            "difference": 0.09481038503922064,
+            "interval_95": [
+              0.057919308547908346,
+              0.1338705233898159
+            ]
+          },
+          "clef-minus-qwen3-4b": {
+            "difference": -0.02787943406918807,
+            "interval_95": [
+              -0.05112582740135256,
+              -0.004492729278961061
+            ]
           }
         },
         "rankings_sha256": {
@@ -2471,7 +2513,8 @@
           "runs/nfcorpus/arms/ettin-150m/run/rankings.jsonl": "bd352059bdcc1dbcb54fc281fc35ee96145a8c9fdfc3c8b29ecb8225e7866e32",
           "runs/nfcorpus/arms/bge-v2-m3/run/rankings.jsonl": "f68940231ccca6f667a02137fa2e98f503bcc63a15c807023fe445f2e0feceaa",
           "runs/nfcorpus/arms/qwen3-0.6b/run/rankings.jsonl": "9ea0fdaf2b435263fd888c0c2f05903d0b9611c4e5ca69461bf7f205d1f2a4dd",
-          "runs/nfcorpus/arms/qwen3-4b/run/rankings.jsonl": "feb873cc4a575e5b676abf0a20eccd0bddec6b0f5a7e0024eb18cf4bfd8d0681"
+          "runs/nfcorpus/arms/qwen3-4b/run/rankings.jsonl": "feb873cc4a575e5b676abf0a20eccd0bddec6b0f5a7e0024eb18cf4bfd8d0681",
+          "runs/nfcorpus/arms/clef-batched/run/rankings.jsonl": "64e843fc84c9a4cbfdc5aba849b5ed28588bc507ca5efc397a0301f15619f9c7"
         }
       },
       "screen_manifest": {
@@ -4009,6 +4052,12 @@
           "median_seconds": 0.6399078335016384,
           "billed_usd": 0.0216,
           "note": "Timing check: the three requests of a query sent at the same time. Same request bodies as the jev arm."
+        },
+        "clef": {
+          "completed": 100,
+          "input_tokens": 2662672,
+          "median_seconds": 109.17491864600015,
+          "hardware": "Apple M4 Pro, MPS; not the model's serving hardware"
         }
       },
       "laya_wording_sweep": {

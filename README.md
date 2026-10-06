@@ -11,7 +11,7 @@ Measured 2026-10-05. This is a ranking benchmark; no answers were generated or g
 - **A hosted decision model matched the LLM.** Jev 1.13 scored 0.824 on SciFact and 0.425 on NFCorpus; GPT-5.6 Luna scored 0.815 and 0.423. The difference is within noise on both. Jev cost $1.05 per 1,000 queries against $3.77 at list price. It answered in 1.7 s with its three requests in sequence and 0.65 s with them in parallel, against 9.1 s for Luna on a ChatGPT plan route.
 - **The largest open reranker tested was within noise of both.** Qwen3-Reranker-4B scored 0.790 and 0.415 with freely available weights. It took about 30 s per query on a laptop GPU, so its real cost is the GPU it is served on.
 - **Smaller rerankers did not beat hybrid search.** Qwen3-Reranker-0.6B improved on no reranker on both datasets, narrowly on SciFact. BGE-reranker-v2-m3, Ettin 150M and MiniLM-L6 could not be told apart from no reranker, and BGE-reranker-base was worse on NFCorpus. The two older ones still rank above BM25 alone on most of the full-set comparisons; a hybrid first stage leaves them little to fix.
-- **"Decision model" is not one quality level.** Laya, an open 421M decision model, ranked far below no reranker under all nine wordings tried. Clef-flash, an open 9.4B decision model given the same requests as Jev, scored 0.753 on SciFact with no failed queries: far above Laya, below Jev (-0.071, interval -0.116 to -0.031) and not clearly above no reranker (+0.051, interval -0.011 to +0.115). Its NFCorpus run was still in progress when this was written, so it is not yet in the tables or figures.
+- **"Decision model" is not one quality level.** Laya, an open 421M decision model, ranked far below no reranker under all nine wordings tried. Clef-flash, an open 9.4B decision model given the same requests as Jev, scored 0.753 and 0.387: far above Laya, below Jev on both datasets, and not clearly above no reranker on either.
 
 ## Results
 
@@ -23,6 +23,7 @@ nDCG@10 on 100 test queries per dataset. Mean is the unweighted mean of the two 
 | GPT-5.6 Luna | LLM, ranks the whole list | 0.815 | 0.423 | 0.619 | 9.1 s | $3.77 at list price |
 | Qwen3-Reranker-4B | open reranker | 0.790 | 0.415 | 0.603 | 31 s * | open weights |
 | Qwen3-Reranker-0.6B | open reranker | 0.761 | 0.407 | 0.584 | 5.7 s * | open weights |
+| Clef-flash 9B | open decision model | 0.753 | 0.387 | 0.570 | not reported | open weights |
 | BGE-reranker-v2-m3 | open reranker, 568M | 0.720 | 0.380 | 0.550 | 3.1 s * | open weights |
 | Ettin reranker 150M | open reranker | 0.723 | 0.370 | 0.547 | 1.3 s * | open weights |
 | No reranker | hybrid search only | 0.702 | 0.373 | 0.538 |  |  |
@@ -44,6 +45,7 @@ Difference in nDCG@10 on the same queries, with a 95% interval from a paired boo
 | GPT-5.6 Luna minus no reranker | **+0.113 [+0.053, +0.175]** | **+0.050 [+0.016, +0.085]** |
 | Qwen3-Reranker-4B minus no reranker | **+0.088 [+0.031, +0.147]** | **+0.042 [+0.015, +0.069]** |
 | Qwen3-Reranker-0.6B minus no reranker | **+0.059 [+0.003, +0.116]** | **+0.033 [+0.010, +0.057]** |
+| Clef-flash 9B minus no reranker | +0.051 [-0.011, +0.115] | +0.014 [-0.017, +0.046] |
 | BGE-reranker-v2-m3 minus no reranker | +0.017 [-0.022, +0.056] | +0.007 [-0.022, +0.034] |
 | Ettin reranker 150M minus no reranker | +0.021 [-0.033, +0.075] | -0.003 [-0.036, +0.029] |
 | MiniLM-L6 minus no reranker | -0.021 [-0.072, +0.028] | -0.013 [-0.039, +0.012] |
@@ -54,6 +56,9 @@ Difference in nDCG@10 on the same queries, with a 95% interval from a paired boo
 | GPT-5.6 Luna minus Qwen3-Reranker-4B | +0.024 [-0.018, +0.069] | +0.008 [-0.016, +0.031] |
 | Jev 1.13 minus Qwen3-Reranker-0.6B | **+0.063 [+0.023, +0.107]** | +0.019 [-0.005, +0.042] |
 | Qwen3-Reranker-4B minus Qwen3-Reranker-0.6B | +0.029 [-0.003, +0.064] | +0.009 [-0.008, +0.026] |
+| Jev 1.13 minus Clef-flash 9B | **+0.071 [+0.031, +0.116]** | **+0.038 [+0.017, +0.058]** |
+| Clef-flash 9B minus Qwen3-Reranker-4B | -0.038 [-0.083, +0.009] | **-0.028 [-0.051, -0.004]** |
+| Clef-flash 9B minus Laya 421M | **+0.281 [+0.200, +0.361]** | **+0.095 [+0.058, +0.134]** |
 
 With 100 queries per dataset, differences under about 0.03 on NFCorpus and under 0.04 to 0.06 on SciFact cannot be told from noise. Jev, Luna and Qwen3-Reranker-4B could not be separated from each other, and neither could the two Qwen3 rerankers.
 
@@ -157,7 +162,7 @@ The best wordings are a statistical tie: three levels minus four levels is +0.00
 - **Jev.** 200 of 200 queries completed, and 40 of 40 in the timing check.
 - **Laya.** 24% of its inputs were cut at 512 tokens with the four-level rubric and 13% with yes/no.
 - **Open rerankers.** No failures. At most 3 of 5,000 passages per run were longer than 2,048 tokens on their own and were cut.
-- **Clef-flash.** 100 of 100 SciFact queries completed; NFCorpus was still running when this was written.
+- **Clef-flash.** 200 of 200 queries completed. No request reached its 16,384-token input limit.
 - **Registration text that was superseded.** Registrations are published as written. Four of their fields are out of date and the text above is the correct account: the limit "one wording per arm, written before any arm ran; no prompt search" predates the Laya sweep; the Jev registration mentions eight parallel requests, but the scored run sent its three requests in sequence; the `primary` fields name MiniLM-L6 as the comparison, while this report compares against no reranker; and the Luna registration's `method` text also describes the unrun yes/no arms.
 
 ## Related public benchmarks
