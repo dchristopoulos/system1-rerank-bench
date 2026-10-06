@@ -95,7 +95,7 @@ Full revisions, prompts and query IDs are in the [result file](results/reranker-
 > 2. The passage partly supplies the information needed to answer or verify the query.
 > 3. The passage fully supplies the information needed to answer or verify the query.
 
-Passages are ordered by the expected level. The rubric and the batched request shape come from [jev-rerank-bench](https://github.com/anessbelbati/jev-rerank-bench), a public study of Jev reranking prompts over eight BEIR datasets, SciFact and NFCorpus among them. There a four-level rubric with several passages per request scored best (0.692 mean nDCG@10) and yes/no with one passage per request scored 0.670. That study sends up to 30 passages per request; this benchmark sends 17 so that the same request also fits Clef-flash's default input limit. Laya cannot take several passages per request, so it gets the same rubric one passage at a time.
+Passages are ordered by the expected level. The rubric and the batched request shape come from [jev-rerank-bench](https://github.com/anessbelbati/jev-rerank-bench), a much larger public benchmark over eight English datasets, SciFact and NFCorpus among them. There a four-level rubric with several passages per request scored best (0.692 mean nDCG@10) and yes/no with one passage per request scored 0.670. That benchmark sends up to 30 passages per request; this benchmark sends 17 so that the same request also fits Clef-flash's default input limit. Laya cannot take several passages per request, so it gets the same rubric one passage at a time.
 
 **Each model in its normal mode.** The LLM sees all 50 passages at once. Jev and Clef-flash see 17 at a time. Laya and the open rerankers score one passage at a time. This compares the models as they are deployed, not under one identical protocol.
 
@@ -151,7 +151,7 @@ The best wordings are a statistical tie: three levels minus four levels is +0.00
 ## Cost and time
 
 - **Jev.** 5.0M input tokens over the 200 comparison queries, $0.211 billed by OpenRouter, about 25,000 tokens per query. Most of that is the rubric repeated for each passage. In the scored run the three requests of a query were sent one after another and the median was 1.7 s. The 95th percentile was 2.0 to 2.1 s. A registered timing check on 40 of the same queries sent the three requests at the same time and measured a median of 0.65 s, with a 95th percentile near 2.0 s, so parallel requests lower the typical time but not the tail. Against Luna's 9.1 s that is 5 to 14 times faster. The check's nDCG@10 differed from the scored run's by about 0.002, with small changes in individual scores, so Jev is close to but not exactly deterministic.
-- **GPT-5.6 Luna.** About 17,000 input tokens per query. The run used a ChatGPT plan route to the Responses API, so the price is the list API price applied to the measured tokens ($0.20 per million input, $1.20 per million output, read 2026-10-05) and the time is that route's, not the paid API's. OpenAI documents no speed difference between that route and the API's standard tier, but none was measured here. The API also sells a [faster tier](https://openai.com/api-priority-processing/) at a higher price. OpenAI documents no speed difference between that route and the API's standard tier, but none was measured here. The API also sells a [faster tier](https://openai.com/api-priority-processing/) at a higher price, which would narrow the time gap and widen the price gap.
+- **GPT-5.6 Luna.** About 17,000 input tokens per query. The run used a ChatGPT plan route to the Responses API, so the price is the list API price applied to the measured tokens ($0.20 per million input, $1.20 per million output, read 2026-10-05) and the time is that route's, not the paid API's. OpenAI documents no speed difference between that route and the API's standard tier, but none was measured here. The API also sells a [faster tier](https://openai.com/api-priority-processing/) at a higher price, which would narrow the time gap and widen the price gap.
 - **Open models.** All ran on an Apple M4 Pro with 48 GB. Laya's faster path is CUDA-only. Clef-flash is a 9.4B model and its release is tested on CUDA; on this machine it fell back to reference kernels, so its time of about 100 s per query says little about its serving speed.
 - **Hosted prices for open rerankers** were not measured here. A [public benchmark](https://github.com/denser-org/rerank-bench-jev) reports Qwen3-Reranker-0.6B on a hosted endpoint at about a quarter of Jev's price per query.
 
@@ -167,12 +167,12 @@ The best wordings are a statistical tie: three levels minus four levels is +0.00
 
 ## Related public benchmarks
 
-- [anessbelbati/jev-rerank-bench](https://github.com/anessbelbati/jev-rerank-bench) compares Jev prompt shapes across eight BEIR datasets. Its best setting, a four-level rubric with batched passages, is the one used here.
+- [anessbelbati/jev-rerank-bench](https://github.com/anessbelbati/jev-rerank-bench) is the benchmark this one builds on, and it is much larger: about 30 rerankers over BM25 top 30 on eight English datasets (1,617 queries), plus reasoning, negation and French sets. It covers seven Jev prompt shapes, Cohere Rerank 4, ZeroEntropy zerank-2, an LLM ranker (DeepSeek V4.1 Flash), Qwen3-Reranker-4B, BGE-reranker-v2-m3, Laya and other open models, on rented server GPUs with measured cost and latency and the same paired bootstrap. Its headline is Jev's four-level rubric level with Cohere Rerank 4 Pro (0.692 against 0.691), Qwen3-Reranker-4B behind at 0.660 and Laya at 0.483, level with BM25. The Jev rubric used here is its best setting. The order of Jev, Qwen3-Reranker-4B and Laya here agrees with it; with 100 queries per dataset this benchmark cannot separate Jev from Qwen3-Reranker-4B, which that one does.
 - [denser-org/rerank-bench-jev](https://github.com/denser-org/rerank-bench-jev) compares Jev with a hosted Qwen3-Reranker-0.6B over BM25 top 100 on the same two datasets. It reports Jev ahead on SciFact (0.770 against 0.748), level on NFCorpus, and a p50 of 0.64 s for Jev. The Qwen3-0.6B score here (0.761 on SciFact), the pattern against Jev and the Jev latency are consistent with it. Jev's score here is higher (0.824), with a different first stage and 100 queries.
 - [vvr-rao/jev-benchmarks](https://github.com/vvr-rao/jev-benchmarks) reports Jev, Cohere Rerank 4 Pro and Qwen3-Reranker-8B within 0.007 of each other on SciFact. Cohere was not run here.
 - [nadeem4/ai-experiments](https://github.com/nadeem4/ai-experiments/blob/main/rerank/RESULTS.md) found Laya below hybrid search and Jev above it on NFCorpus, which this benchmark confirms.
 
-What this benchmark adds: an LLM listwise reranker and locally run open rerankers on the same candidates, two open decision models, the Laya wording sweep, a hybrid first stage, and paired intervals for every comparison.
+What this benchmark adds is narrower. The first stage is hybrid search over 50 candidates, not BM25, so the no-reranker baseline is stronger (0.702 on these SciFact queries, where BM25 alone scores 0.647) and most rerankers no longer clear it. It also adds Clef-flash, GPT-5.6 Luna, Qwen3-Reranker-0.6B, Ettin 150M and the nine-wording Laya sweep. It is a smaller, laptop-scale replication with a different first stage, not a replacement for the benchmarks above.
 
 ## Limits
 
@@ -187,7 +187,7 @@ What this benchmark adds: an LLM listwise reranker and locally run open reranker
 - The Luna route has no temperature control and was unreliable under load.
 - Jev's price and behaviour belong to version 1.13 on the day of the run.
 - One Laya checkpoint and one Clef checkpoint were tested, with released weights and no training.
-- Cohere Rerank and other hosted rerankers were not run.
+- Cohere Rerank and other hosted rerankers were not run here. The larger benchmark linked under related work covers them.
 
 ## Reproduce
 
