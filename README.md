@@ -11,7 +11,7 @@ Measured 2026-10-05. This is a ranking benchmark; no answers were generated or g
 - **A hosted decision model matched the LLM.** Jev 1.13 scored 0.824 on SciFact and 0.425 on NFCorpus; GPT-5.6 Luna scored 0.815 and 0.423. The difference is within noise on both. Jev cost $1.05 per 1,000 queries against $3.77 at list price. It answered in 1.7 s with its three requests in sequence and 0.65 s with them in parallel, against 9.1 s for Luna on a ChatGPT plan route.
 - **The largest open reranker tested was within noise of both.** Qwen3-Reranker-4B scored 0.790 and 0.415 with freely available weights. It took about 30 s per query on a laptop GPU, so its real cost is the GPU it is served on.
 - **Smaller rerankers did not beat hybrid search.** Qwen3-Reranker-0.6B improved on no reranker on both datasets, narrowly on SciFact. BGE-reranker-v2-m3, Ettin 150M and MiniLM-L6 could not be told apart from no reranker, and BGE-reranker-base was worse on NFCorpus. The two older ones still rank above BM25 alone on most of the full-set comparisons; a hybrid first stage leaves them little to fix.
-- **"Decision model" is not one quality level.** Laya, an open 421M decision model, ranked far below no reranker under all nine wordings tried. Clef-flash, an open 9.4B decision model given the same requests as Jev, is still running and is not in these tables.
+- **"Decision model" is not one quality level.** Laya, an open 421M decision model, ranked far below no reranker under all nine wordings tried. Clef-flash, an open 9.4B decision model given the same requests as Jev, scored 0.753 on SciFact with no failed queries: far above Laya, below Jev (-0.071, interval -0.116 to -0.031) and not clearly above no reranker (+0.051, interval -0.011 to +0.115). Its NFCorpus run was still in progress when this was written, so it is not yet in the tables or figures.
 
 ## Results
 
@@ -157,7 +157,7 @@ The best wordings are a statistical tie: three levels minus four levels is +0.00
 - **Jev.** 200 of 200 queries completed, and 40 of 40 in the timing check.
 - **Laya.** 24% of its inputs were cut at 512 tokens with the four-level rubric and 13% with yes/no.
 - **Open rerankers.** No failures. At most 3 of 5,000 passages per run were longer than 2,048 tokens on their own and were cut.
-- **Clef-flash.** Still running; not in these tables.
+- **Clef-flash.** 100 of 100 SciFact queries completed; NFCorpus was still running when this was written.
 - **Registration text that was superseded.** Registrations are published as written. Four of their fields are out of date and the text above is the correct account: the limit "one wording per arm, written before any arm ran; no prompt search" predates the Laya sweep; the Jev registration mentions eight parallel requests, but the scored run sent its three requests in sequence; the `primary` fields name MiniLM-L6 as the comparison, while this report compares against no reranker; and the Luna registration's `method` text also describes the unrun yes/no arms.
 
 ## Related public benchmarks

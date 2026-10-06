@@ -171,6 +171,11 @@
             "ndcg": 0.7904783306244887,
             "recall": 0.935,
             "reciprocal_rank": 0.7520674603174603
+          },
+          "clef": {
+            "ndcg": 0.7529139096422592,
+            "recall": 0.905,
+            "reciprocal_rank": 0.7112896825396825
           }
         },
         "median_seconds_per_query": {
@@ -184,7 +189,8 @@
           "ettin-150m": 1.203698915996938,
           "bge-v2-m3": 3.0745296249988314,
           "qwen3-0.6b": 5.517759958500392,
-          "qwen3-4b": 30.27238983350253
+          "qwen3-4b": 30.27238983350253,
+          "clef": 98.74077547900015
         },
         "failed_queries": {
           "bm25": 0,
@@ -200,7 +206,8 @@
           "ettin-150m": 0,
           "bge-v2-m3": 0,
           "qwen3-0.6b": 0,
-          "qwen3-4b": 0
+          "qwen3-4b": 0,
+          "clef": 0
         },
         "paired_ndcg_at_10": {
           "minilm-minus-hybrid": {
@@ -370,6 +377,41 @@
               -0.003446871209769979,
               0.06372220843061957
             ]
+          },
+          "clef-minus-hybrid": {
+            "difference": 0.050572288602398895,
+            "interval_95": [
+              -0.010603607960155022,
+              0.1146857812426018
+            ]
+          },
+          "jev-minus-clef": {
+            "difference": 0.07114146741653969,
+            "interval_95": [
+              0.03058978991786499,
+              0.11563631086190931
+            ]
+          },
+          "luna-minus-clef": {
+            "difference": 0.062009908512005385,
+            "interval_95": [
+              0.015494706353811755,
+              0.10984134990835186
+            ]
+          },
+          "clef-minus-laya-rubric": {
+            "difference": 0.2806487247393658,
+            "interval_95": [
+              0.20045806108988456,
+              0.3610912808398761
+            ]
+          },
+          "clef-minus-qwen3-4b": {
+            "difference": -0.03756442098222944,
+            "interval_95": [
+              -0.08308820117161135,
+              0.009290096690508896
+            ]
           }
         },
         "rankings_sha256": {
@@ -384,7 +426,8 @@
           "runs/scifact/arms/ettin-150m/run/rankings.jsonl": "4402a1854de4de57affddc737232118fd5899041277880804f4cff95d55ea4cd",
           "runs/scifact/arms/bge-v2-m3/run/rankings.jsonl": "286f7a5ad65d5f23be4474eb4433981d8f64456e789c4fd2f4d7b8b141aab85a",
           "runs/scifact/arms/qwen3-0.6b/run/rankings.jsonl": "b1c57189c9092d418a256b0221104e9e817aca065c7282e366058179a924f7b9",
-          "runs/scifact/arms/qwen3-4b/run/rankings.jsonl": "2617f46b5644ca62fd8f2ccad02a50197ce52f5eb19b497b8cb7aa222ca58dc7"
+          "runs/scifact/arms/qwen3-4b/run/rankings.jsonl": "2617f46b5644ca62fd8f2ccad02a50197ce52f5eb19b497b8cb7aa222ca58dc7",
+          "runs/scifact/arms/clef-batched/run/rankings.jsonl": "95fa468aca50bd9d53ec197a8bc6e820293ee8d54749419288aa30e01a726af4"
         }
       },
       "screen_manifest": {
@@ -1913,6 +1956,12 @@
           "median_seconds": 0.6517997704977461,
           "billed_usd": 0.0201,
           "note": "Timing check: the three requests of a query sent at the same time. Same request bodies as the jev arm."
+        },
+        "clef": {
+          "completed": 100,
+          "input_tokens": 2555989,
+          "median_seconds": 98.74077547900015,
+          "hardware": "Apple M4 Pro, MPS; not the model's serving hardware"
         }
       },
       "laya_wording_sweep": {
