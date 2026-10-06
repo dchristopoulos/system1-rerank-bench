@@ -127,8 +127,8 @@ def main():
         "four-level relevance rubric. Open models ran on an Apple M4 Pro, which is not their "
         "serving hardware. Hosted times include the network.</text>",
         f'<text x="48" y="{foot + 20}" {F} font-size="13" fill="{MUTED}">Jev: three requests '
-        "in parallel to in sequence. Luna ran on a ChatGPT plan route; its price is list API "
-        "price for the measured tokens. See the report for intervals.</text>",
+        "in parallel to in sequence. Luna price is list API price for the measured tokens. "
+        "See the report for intervals.</text>",
         "</svg>",
     ]
     Path("results/reranker-benchmark.svg").write_text("\n".join(out) + "\n")
@@ -206,7 +206,7 @@ def social():
     lines = [
         "Dashed line: no reranker. Mean of SciFact and NFCorpus (BEIR), 100 test queries each.",
         "The top three could not be separated. Jev time: three requests in parallel to in sequence.",
-        "LLM time is a ChatGPT plan route; its price is list API price for the measured tokens.",
+        "Hosted times include the network. LLM price is list API price for the measured tokens.",
         "*Open models ran on an Apple M4 Pro laptop GPU, not their serving hardware.",
     ]
     for index, text in enumerate(lines):

@@ -64,6 +64,6 @@
 <text x="1024" y="1210.1" font-family="Helvetica, Arial, sans-serif" font-size="25" font-weight="400" fill="#52514e" text-anchor="end">open</text>
 <text x="56" y="1262" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#8a8983">Dashed line: no reranker. Mean of SciFact and NFCorpus (BEIR), 100 test queries each.</text>
 <text x="56" y="1287" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#8a8983">The top three could not be separated. Jev time: three requests in parallel to in sequence.</text>
-<text x="56" y="1312" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#8a8983">LLM time is a ChatGPT plan route; its price is list API price for the measured tokens.</text>
+<text x="56" y="1312" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#8a8983">Hosted times include the network. LLM price is list API price for the measured tokens.</text>
 <text x="56" y="1337" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#8a8983">*Open models ran on an Apple M4 Pro laptop GPU, not their serving hardware.</text>
 </svg>

@@ -76,5 +76,5 @@
 <text x="48" y="648" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#0b0b0b">Laya 421M<tspan font-weight="400" fill="#52514e" font-size="13">  open decision model</tspan></text>
 <text x="978" y="648" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#52514e">3.9 s on a laptop GPU</text>
 <text x="48" y="694" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8a8983">Decision models use one four-level relevance rubric. Open models ran on an Apple M4 Pro, which is not their serving hardware. Hosted times include the network.</text>
-<text x="48" y="714" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8a8983">Jev: three requests in parallel to in sequence. Luna ran on a ChatGPT plan route; its price is list API price for the measured tokens. See the report for intervals.</text>
+<text x="48" y="714" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8a8983">Jev: three requests in parallel to in sequence. Luna price is list API price for the measured tokens. See the report for intervals.</text>
 </svg>
